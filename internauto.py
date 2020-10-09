@@ -6,6 +6,7 @@ import datetime
 import pafy
 from gtts import gTTS
 import json
+import progressbar as pb
 print("Automated Intercom Radio by Tomasz Gębarski is licensed under CC BY-ND 4.0. \n To view a copy of this license, visit https://creativecommons.org/licenses/by-nd/4.0")
 #Main Programmer Tomasz Gębarski
 #Idea Jan Sikora
@@ -42,14 +43,18 @@ def Sound(sound):
     player.set_media(media)
     player.play()
     time.sleep(1.5)
-    c = player.get_length() / 1000
+    c = int(player.get_length() // 1000)
+    widgets = [' [', pb.Timer(), '] ', 
+    pb.Bar(marker='█'),' (', 
+    time.strftime('%H:%M:%S',time.gmtime(c)), ') ', 
+    ] 
+    bar = pb.ProgressBar(max_value=c,widgets=widgets).start()
     now = datetime.datetime.now()
     cu = now.hour*60 + now.minute + 1 + ( now.second / 60 )
     cen = c/60 + cu
     pom = 1
-    q = 1
     if c <= 420:
-        while(q == 1):
+        for o in bar((z for z in range(1,c))):
             now = datetime.datetime.now()
             cu = now.hour*60 + now.minute + 1 + ( now.second / 60)
             if cu in config["end-hours"]:
@@ -70,13 +75,14 @@ def Sound(sound):
                     print("Started playing.")
                     pom = 1
             if cu >= cen:
-                q = 0
+                break
                 print("Song Ended.")
+            time.sleep(1)
     else:
         print("Requested song is Longer than 7 minutes.")
         player.stop()
-
     del(media)
+    del(widgets)
 
 while(True):
     if link != "":
