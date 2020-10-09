@@ -5,17 +5,20 @@ import vlc
 import datetime
 import pafy
 from gtts import gTTS
+import json
 print("Automated Intercom Radio by Tomasz Gębarski is licensed under CC BY-ND 4.0. \n To view a copy of this license, visit https://creativecommons.org/licenses/by-nd/4.0")
 #Main Programmer Tomasz Gębarski
 #Idea Jan Sikora
+with open('config.json') as config_file:
+    config = json.load(config_file)
 now = datetime.datetime.now()
 cu = now.hour*60 + now.minute + 1
-SPREADSHEET = "Enter Sheet Name Here" #Edit this line
+SPREADSHEET = config["sheet-name"]
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name('auth.json', scope)
+credentials = ServiceAccountCredentials.from_json_keyfile_name(config["auth-file"], scope)
 gc = gspread.authorize(credentials)
-print("The following sheets are available")
+print("The following sheets are available:")
 for sheet in gc.openall():
     print("{} - {}".format(sheet.title, sheet.id))
 workbook = gc.open(SPREADSHEET)
@@ -46,7 +49,6 @@ def Sound(sound):
     q = 1
     if c <= 420:
         while(q == 1):
-            print(now," ",cu," ",cen)
             now = datetime.datetime.now()
             cu = now.hour*60 + now.minute + 1 + ( now.second / 60)
             if cu == 460 or cu == 510 or cu == 565 or cu == 620 or cu == 675 or cu == 730 or cu == 795 or cu == 860 or cu == 915 or cu == 965:
