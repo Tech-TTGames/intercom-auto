@@ -52,7 +52,7 @@ def Sound(sound):
         while(q == 1):
             now = datetime.datetime.now()
             cu = now.hour*60 + now.minute + 1 + ( now.second / 60)
-            if cu == 460 or cu == 510 or cu == 565 or cu == 620 or cu == 675 or cu == 730 or cu == 795 or cu == 860 or cu == 915 or cu == 965:
+            if cu in config["end-hours"]:
                 if pom == 1:
                     player.pause()
                     print("Paused.")
@@ -61,7 +61,7 @@ def Sound(sound):
                         platts.play()
                     pom = 2
                     cen = cen + 45
-            elif cu == 450 or cu == 505 or cu == 555 or cu == 610 or cu == 665 or cu == 720 or cu == 775 or cu == 840 or cu == 905 or cu == 960:
+            elif cu in config["start-hours"]:
                 if pom == 2:
                     if config["tts-on"]:
                         platts.set_media(ttsPM)
