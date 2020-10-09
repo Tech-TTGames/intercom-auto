@@ -1,0 +1,6 @@
+gspread
+oauth2client
+python-vlc
+gtts
+youtube-dl
+pafy
