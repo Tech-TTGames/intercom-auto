@@ -1,1 +1,1 @@
-{"auth-file":"auth.json","sheet-name":"AutoIntercom","tts-on":false,"end-hours":[460,510,565,620,675,730,795,860,915,965],"start-hours":[450,505,555,610,665,720,775,840,905,960],"max_length":420}
+{"auth-file":"auth.json","sheet-name":"AutoIntercom","tts-on":false,"end-hours":[460,510,565,620,675,730,795,860,915,965],"start-hours":[450,505,555,610,665,720,775,840,905,960],"max-length":420}
