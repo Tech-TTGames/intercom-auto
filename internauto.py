@@ -25,14 +25,15 @@ workbook = gc.open(SPREADSHEET)
 sheet = workbook.sheet1
 i = 1
 link = "bootup"
-vlc_tts = vlc.Instance()
-platts = vlc_tts.media_player_new()
-ttsP = gTTS(text="Początek Przerwy",lang='pl')
-ttsP.save("Pts.mp3")
-ttsPM = vlc_tts.media_new("Pts.mp3")
-ttsL = gTTS(text="Początek Lekcji",lang='pl')
-ttsL.save("Lts.mp3")
-ttsLM = vlc_tts.media_new("Lts.mp3")
+if config["tts-on"]:
+    vlc_tts = vlc.Instance()
+    platts = vlc_tts.media_player_new()
+    ttsP = gTTS(text="Początek Przerwy",lang='pl')
+    ttsP.save("Pts.mp3")
+    ttsPM = vlc_tts.media_new("Pts.mp3")
+    ttsL = gTTS(text="Początek Lekcji",lang='pl')
+    ttsL.save("Lts.mp3")
+    ttsLM = vlc_tts.media_new("Lts.mp3")
 vlc_instance = vlc.Instance()
 player = vlc_instance.media_player_new()
 
@@ -54,23 +55,25 @@ def Sound(sound):
             if cu == 460 or cu == 510 or cu == 565 or cu == 620 or cu == 675 or cu == 730 or cu == 795 or cu == 860 or cu == 915 or cu == 965:
                 if pom == 1:
                     player.pause()
-                    print("Pause")
-                    platts.set_media(ttsLM)
-                    platts.play()
+                    print("Paused.")
+                    if config["tts-on"]:
+                        platts.set_media(ttsLM)
+                        platts.play()
                     pom = 2
                     cen = cen + 45
             elif cu == 450 or cu == 505 or cu == 555 or cu == 610 or cu == 665 or cu == 720 or cu == 775 or cu == 840 or cu == 905 or cu == 960:
                 if pom == 2:
-                    platts.set_media(ttsPM)
-                    platts.play()
+                    if config["tts-on"]:
+                        platts.set_media(ttsPM)
+                        platts.play()
                     player.play()
-                    print("Play")
+                    print("Started playing.")
                     pom = 1
             if cu >= cen:
                 q = 0
-                print("Song Ended")
+                print("Song Ended.")
     else:
-        print("Song Longer than 7 min")
+        print("Requested song is Longer than 7 minutes.")
         player.stop()
 
     del(media)
@@ -87,4 +90,4 @@ while(True):
                 url = bas.url
                 print(aust.title)
                 Sound(url)
-    print("Loop Completed")
+    print("Loop Completed!")
