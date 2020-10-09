@@ -4,4 +4,3 @@ python-vlc
 gtts
 youtube-dl
 pafy
-progressbar2
