@@ -53,7 +53,7 @@ def Sound(sound):
     cu = now.hour*60 + now.minute + 1 + ( now.second / 60 )
     cen = c/60 + cu
     pom = 1
-    if c <= 420:
+    if c <= config["max-length"] or config["max-length"] == 0:
         for o in bar((z for z in range(1,c))):
             now = datetime.datetime.now()
             cu = now.hour*60 + now.minute + 1 + ( now.second / 60)
@@ -79,7 +79,7 @@ def Sound(sound):
                 print("Song Ended.")
             time.sleep(1)
     else:
-        print("Requested song is Longer than 7 minutes.")
+        print("Requested song is Longer than ",config["max_length"],"s")
         player.stop()
     del(media)
     del(widgets)
