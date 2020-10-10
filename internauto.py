@@ -7,7 +7,7 @@ import pafy
 from gtts import gTTS
 import json
 import progressbar as pb
-print("Automated Intercom Radio by Tomasz Gębarski is licensed under CC BY-ND 4.0. \n To view a copy of this license, visit https://creativecommons.org/licenses/by-nd/4.0")
+print("Automated Intercom Radio by Tomasz Gębarski & Jan Przebor is licensed under CC BY-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0")
 #Main Programmer Tomasz Gębarski
 #Idea Jan Sikora
 with open('config.json') as config_file:
