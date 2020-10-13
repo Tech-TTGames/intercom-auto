@@ -16,10 +16,6 @@ Open your google forms and create a form named as in config ensuring that the fi
 Open the responses tab and click the google spreadsheat button creating your spreadsheet with answers.<br/>
 Open the spreadsheet and click share and add the Service Account's mail to the list.<br/>
 Open the internauto.py file and replace the 'Enter Sheet Name Here' Placeholder with the name of your sheet.<br/>
-# TODOs
-- [x] Music progress bar
-- [ ] Auto-update from Github releases
-- [ ] Change config format to YAML
 # Compatibility
 We can confirm that our script and all dependecies are working on:
 - Windows 10 1909 x64; Python 3.7.0 and newer
