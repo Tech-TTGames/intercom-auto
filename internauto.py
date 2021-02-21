@@ -7,6 +7,7 @@ import pafy
 from gtts import gTTS
 import json
 import progressbar as pb
+
 print("Automated Intercom Radio by Tomasz Gębarski & Jan Przebor is licensed under CC BY-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0")
 #Main Programmer Tomasz Gębarski
 #Idea Jan Sikora
@@ -96,4 +97,4 @@ while(True):
                 url = bas.url
                 print(aust.title)
                 Sound(url)
-    print("Loop Completed!")
+
